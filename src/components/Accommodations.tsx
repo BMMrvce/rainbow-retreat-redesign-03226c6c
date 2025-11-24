@@ -1,6 +1,14 @@
+import { useState } from "react";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
-import { Users, Heart, Tent, Bed } from "lucide-react";
+import { Users, Heart, Tent } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
 import villaImage from "@/assets/villa.jpg";
 import coupleSuiteImage from "@/assets/couple-suite.jpg";
 
@@ -11,6 +19,8 @@ const accommodations = [
     description: "Luxurious private villas with modern amenities and beautiful garden views",
     image: villaImage,
     capacity: "4-6 guests",
+    details: "Our private villas offer the ultimate luxury experience with spacious living areas, fully equipped kitchens, private gardens, and modern amenities. Perfect for families or groups looking for privacy and comfort. Features include air conditioning, Wi-Fi, smart TV, and 24/7 room service.",
+    amenities: ["King-size beds", "Private kitchen", "Garden view", "Free Wi-Fi", "Air conditioning", "Smart TV"],
   },
   {
     icon: Heart,
@@ -18,6 +28,8 @@ const accommodations = [
     description: "Romantic suites perfect for couples seeking a peaceful retreat",
     image: coupleSuiteImage,
     capacity: "2 guests",
+    details: "Designed for romance and intimacy, our couple suites provide a serene escape with premium furnishings, cozy ambiance, and stunning views. Each suite includes a comfortable seating area, modern bathroom, and private balcony perfect for morning coffee or evening relaxation.",
+    amenities: ["Queen-size bed", "Private balcony", "Jacuzzi", "Minibar", "Premium toiletries", "Romantic lighting"],
   },
   {
     icon: Users,
@@ -25,6 +37,8 @@ const accommodations = [
     description: "Comfortable shared accommodations ideal for groups and budget travelers",
     image: villaImage,
     capacity: "8-12 guests",
+    details: "Our well-maintained dormitories are perfect for groups, teams, or budget-conscious travelers. Each dormitory features comfortable bunk beds, shared bathrooms, lockers for personal belongings, and common areas for socializing. Great for corporate outings, school trips, or group adventures.",
+    amenities: ["Bunk beds", "Shared bathrooms", "Lockers", "Common area", "Fan/AC options", "Hot water"],
   },
   {
     icon: Tent,
@@ -32,6 +46,8 @@ const accommodations = [
     description: "Unique glamping experience under the stars with all essential comforts",
     image: coupleSuiteImage,
     capacity: "2-4 guests",
+    details: "Experience nature without compromising comfort in our luxury tents. Each tent is equipped with comfortable beds, electricity, and attached bathrooms. Wake up to the sounds of nature and enjoy stargazing at night. Perfect for adventurous couples or small families seeking a unique stay experience.",
+    amenities: ["Comfortable beds", "Attached bathroom", "Electricity", "Outdoor seating", "Campfire access", "Star gazing"],
   },
 ];
 
@@ -56,52 +72,106 @@ function Home(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export const Accommodations = () => {
-  return (
-    <section id="accommodations" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            Luxury Accommodations
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose from our range of beautifully designed stays, each offering a unique experience
-          </p>
-        </div>
+  const [selectedAccommodation, setSelectedAccommodation] = useState<typeof accommodations[0] | null>(null);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {accommodations.map((accommodation, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden group hover:shadow-2xl transition-all duration-300"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={accommodation.image}
-                  alt={accommodation.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
-                  {accommodation.capacity}
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <accommodation.icon className="w-5 h-5 text-primary" />
+  return (
+    <>
+      <section id="accommodations" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+              Luxury Accommodations
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose from our range of beautifully designed stays, each offering a unique experience
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {accommodations.map((accommodation, index) => (
+              <Card
+                key={index}
+                className="overflow-hidden group hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={accommodation.image}
+                    alt={accommodation.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
+                    {accommodation.capacity}
                   </div>
-                  <h3 className="text-2xl font-serif font-bold text-card-foreground">
-                    {accommodation.title}
-                  </h3>
                 </div>
-                <p className="text-muted-foreground mb-4">{accommodation.description}</p>
-                <Button variant="outline" className="w-full">
-                  View Details
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <accommodation.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-serif font-bold text-card-foreground">
+                      {accommodation.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground mb-4">{accommodation.description}</p>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => setSelectedAccommodation(accommodation)}
+                  >
+                    View Details
+                  </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Dialog open={!!selectedAccommodation} onOpenChange={() => setSelectedAccommodation(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          {selectedAccommodation && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-3xl font-serif">
+                  {selectedAccommodation.title}
+                </DialogTitle>
+                <DialogDescription className="text-base">
+                  Capacity: {selectedAccommodation.capacity}
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-4">
+                <img
+                  src={selectedAccommodation.image}
+                  alt={selectedAccommodation.title}
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+                
+                <div>
+                  <h4 className="font-semibold text-lg mb-2">About</h4>
+                  <p className="text-muted-foreground">{selectedAccommodation.details}</p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-lg mb-2">Amenities</h4>
+                  <ul className="grid grid-cols-2 gap-2">
+                    {selectedAccommodation.amenities.map((amenity, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-muted-foreground">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        {amenity}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Button className="w-full" size="lg">
+                  Book Now
                 </Button>
               </div>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
