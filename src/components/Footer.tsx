@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -87,12 +87,31 @@ export const Footer = () => {
               >
                 <Mail className="w-5 h-5" />
               </a>
+              <a
+                href="https://wa.me/91XXXXXXXXXX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-secondary-foreground/20 pt-8 text-center text-secondary-foreground/60">
           <p>&copy; 2024 Rainbow Retreat. All rights reserved.</p>
+          <p className="mt-2">
+            Built by{" "}
+            <a
+              href="https://tantravruksha.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-secondary-foreground hover:text-secondary-foreground/80 transition-colors underline"
+            >
+              Tantravruksha.dev
+            </a>
+          </p>
         </div>
       </div>
     </footer>
