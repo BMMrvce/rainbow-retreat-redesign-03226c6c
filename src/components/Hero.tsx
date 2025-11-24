@@ -27,7 +27,7 @@ export const Hero = () => {
             Escape to Paradise
           </h1>
           <p className="text-xl md:text-2xl text-foreground/90 max-w-2xl mx-auto">
-            Experience luxury, adventure, and tranquility at Rainbow Retreat - Your perfect
+            Experience luxury, adventure, and tranquility at 7colourbow - Your perfect
             getaway in the heart of nature
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">

@@ -34,7 +34,7 @@ export const Features = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            Why Choose Rainbow Retreat?
+            Why Choose 7colourbow?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover the perfect blend of luxury, nature, and adventure at our resort
