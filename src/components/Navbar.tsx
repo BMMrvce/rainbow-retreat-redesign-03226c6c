@@ -45,10 +45,10 @@ export const Navbar = () => {
               Home
             </button>
             <button
-              onClick={() => scrollToSection("why-rainbow")}
+              onClick={() => scrollToSection("why-7colourbow")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Why Rainbow
+              Why 7colourbow
             </button>
             <button
               onClick={() => scrollToSection("accommodations")}
@@ -99,10 +99,10 @@ export const Navbar = () => {
                 Home
               </button>
               <button
-                onClick={() => scrollToSection("why-rainbow")}
+                onClick={() => scrollToSection("why-7colourbow")}
                 className="text-foreground hover:text-primary transition-colors text-left"
               >
-                Why Rainbow
+                Why 7colourbow
               </button>
               <button
                 onClick={() => scrollToSection("accommodations")}

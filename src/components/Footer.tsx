@@ -56,7 +56,7 @@ export const Footer = () => {
               <li>Nettigere, South Bangalore</li>
               <li>Karnataka, India</li>
               <li>+91 XXXXX XXXXX</li>
-              <li>info@rainbowretreat.in</li>
+              <li>info@7colourbowretreat.in</li>
             </ul>
           </div>
 
