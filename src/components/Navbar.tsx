@@ -45,6 +45,12 @@ export const Navbar = () => {
               Home
             </button>
             <button
+              onClick={() => scrollToSection("why-rainbow")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Why Rainbow
+            </button>
+            <button
               onClick={() => scrollToSection("accommodations")}
               className="text-foreground hover:text-primary transition-colors"
             >
@@ -91,6 +97,12 @@ export const Navbar = () => {
                 className="text-foreground hover:text-primary transition-colors text-left"
               >
                 Home
+              </button>
+              <button
+                onClick={() => scrollToSection("why-rainbow")}
+                className="text-foreground hover:text-primary transition-colors text-left"
+              >
+                Why Rainbow
               </button>
               <button
                 onClick={() => scrollToSection("accommodations")}
