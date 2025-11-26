@@ -55,7 +55,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-secondary-foreground/80">
               <li>Nettigere, South Bangalore</li>
               <li>Karnataka, India</li>
-              <li>+91 XXXXX XXXXX</li>
+              <li>+91 99008 08691</li>
               <li>info@7colorbowretreat.in</li>
             </ul>
           </div>

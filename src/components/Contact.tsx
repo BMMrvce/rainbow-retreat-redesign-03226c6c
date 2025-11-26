@@ -107,8 +107,8 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Phone</h4>
-                  <p className="text-muted-foreground">+91 XXXXX XXXXX</p>
-                  <p className="text-muted-foreground">+91 XXXXX XXXXX</p>
+                  <p className="text-muted-foreground">+91 99008 08691</p>
+                  {/* <p className="text-muted-foreground">+91 XXXXX XXXXX</p> */}
                 </div>
               </div>
             </Card>
@@ -120,7 +120,7 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Email</h4>
-                  <p className="text-muted-foreground">info@7colorbowretreat.in</p>
+                  <p className="text-muted-foreground">Colorsbowresort@gmail.com</p>
                 </div>
               </div>
             </Card>
