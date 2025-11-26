@@ -5,6 +5,7 @@ import heroImage from "@/assets/hero-resort.jpg";
 import coupleSuite from "@/assets/couple-suite.jpg";
 import villaImage from "@/assets/villa.jpg";
 import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const activities = [
   {
@@ -40,6 +41,36 @@ const activities = [
 ];
 
 export const Activities = () => {
+  const [slides, setSlides] = useState<string[]>([poolImage, heroImage, coupleSuite, villaImage]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadImages() {
+      try {
+        const res = await supabase
+          .from("activity_images")
+          .select("url")
+          .order("created_at", { ascending: false });
+
+        if (!mounted) return;
+
+        if (res.data && res.data.length > 0) {
+          const urls = (res.data as { url: string }[]).map((r) => r.url).filter(Boolean);
+          if (urls.length > 0) setSlides(urls);
+        }
+      } catch (e) {
+        // ignore: fall back to local assets
+        // console.error(e);
+      }
+    }
+
+    loadImages();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <section id="activities" className="py-20 bg-accent/30">
       <div className="container mx-auto px-4">
