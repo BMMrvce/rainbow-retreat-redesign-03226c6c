@@ -1,6 +1,10 @@
 import { Card } from "./ui/card";
-import { Waves, Zap, Trophy, Flame, UtensilsCrossed, Music } from "lucide-react";
+import { Waves, Zap, Trophy, Flame, UtensilsCrossed, Music, ChevronLeft, ChevronRight } from "lucide-react";
 import poolImage from "@/assets/pool-activities.jpg";
+import heroImage from "@/assets/hero-resort.jpg";
+import coupleSuite from "@/assets/couple-suite.jpg";
+import villaImage from "@/assets/villa.jpg";
+import { useEffect, useState } from "react";
 
 const activities = [
   {
@@ -50,10 +54,10 @@ export const Activities = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
-            <img
-              src={poolImage}
+            {/* Slideshow: keeps same dimensions as the original image */}
+            <Slideshow
+              images={[poolImage, heroImage, coupleSuite, villaImage]}
               alt="Resort Activities"
-              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end">
               <div className="p-8">
@@ -88,3 +92,59 @@ export const Activities = () => {
     </section>
   );
 };
+
+function Slideshow({ images, alt }: { images: string[]; alt?: string }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [images.length]);
+
+  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIndex((i) => (i + 1) % images.length);
+
+  return (
+    <div className="w-full h-full relative">
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={alt ?? `slide-${i}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            i === index ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+        />
+      ))}
+
+      <button
+        aria-label="previous"
+        onClick={prev}
+        className="absolute left-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
+      >
+        <ChevronLeft className="w-5 h-5 text-foreground" />
+      </button>
+
+      <button
+        aria-label="next"
+        onClick={next}
+        className="absolute right-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
+      >
+        <ChevronRight className="w-5 h-5 text-foreground" />
+      </button>
+
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex gap-2">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-2 h-2 rounded-full ${i === index ? "bg-foreground" : "bg-foreground/40"}`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
