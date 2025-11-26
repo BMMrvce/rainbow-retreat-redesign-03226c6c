@@ -40,6 +40,9 @@ const activities = [
 export const Activities = () => {
   const [slides, setSlides] = useState<string[]>([]);
   const [loadError, setLoadError] = useState<string | null>(null);
+  // Hide overlay text and slideshow controls (arrows/dots) per request
+  const showOverlayText = false;
+  const showSlideshowControls = false;
 
   useEffect(() => {
     let mounted = true;
@@ -107,21 +110,23 @@ export const Activities = () => {
           <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
             {/* Slideshow: only render images sourced from Supabase */}
             {slides.length > 0 ? (
-              <Slideshow images={slides} alt="Resort Activities" />
+              <Slideshow images={slides} alt="Resort Activities" showControls={showSlideshowControls} />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-muted/10">
                 <span className="text-muted-foreground">No activity images available</span>
               </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end">
-              <div className="p-8">
-                <h3 className="text-3xl font-serif font-bold text-foreground mb-2">
-                  Adventure Awaits
-                </h3>
-                <p className="text-foreground/90">
-                  Create unforgettable memories with our wide range of activities
-                </p>
-              </div>
+              {showOverlayText ? (
+                <div className="p-8">
+                  <h3 className="text-3xl font-serif font-bold text-foreground mb-2">
+                    Adventure Awaits
+                  </h3>
+                  <p className="text-foreground/90">
+                    Create unforgettable memories with our wide range of activities
+                  </p>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -147,7 +152,7 @@ export const Activities = () => {
   );
 };
 
-function Slideshow({ images, alt }: { images: string[]; alt?: string }) {
+function Slideshow({ images, alt, showControls = true }: { images: string[]; alt?: string; showControls?: boolean }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -173,32 +178,36 @@ function Slideshow({ images, alt }: { images: string[]; alt?: string }) {
         />
       ))}
 
-      <button
-        aria-label="previous"
-        onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
-      >
-        <ChevronLeft className="w-5 h-5 text-foreground" />
-      </button>
-
-      <button
-        aria-label="next"
-        onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
-      >
-        <ChevronRight className="w-5 h-5 text-foreground" />
-      </button>
-
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex gap-2">
-        {images.map((_, i) => (
+      {showControls ? (
+        <>
           <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`w-2 h-2 rounded-full ${i === index ? "bg-foreground" : "bg-foreground/40"}`}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
+            aria-label="previous"
+            onClick={prev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
+          >
+            <ChevronLeft className="w-5 h-5 text-foreground" />
+          </button>
+
+          <button
+            aria-label="next"
+            onClick={next}
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-background/60 hover:bg-background/80 p-2 rounded-full shadow-md"
+          >
+            <ChevronRight className="w-5 h-5 text-foreground" />
+          </button>
+
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-4 flex gap-2">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`w-2 h-2 rounded-full ${i === index ? "bg-foreground" : "bg-foreground/40"}`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }
