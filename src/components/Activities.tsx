@@ -44,7 +44,7 @@ export const Activities = () => {
             Activities & Amenities
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Endless fun and entertainment for everyone at 7colourbow
+            Endless fun and entertainment for everyone at 7colorbow
           </p>
         </div>
 

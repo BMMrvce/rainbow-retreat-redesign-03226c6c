@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-2xl font-serif font-bold mb-4">7colourbow</h3>
+            <h3 className="text-2xl font-serif font-bold mb-4">7colorbow</h3>
             <p className="text-secondary-foreground/80">
               Your perfect escape to luxury, nature, and adventure in South Bangalore.
             </p>
@@ -56,7 +56,7 @@ export const Footer = () => {
               <li>Nettigere, South Bangalore</li>
               <li>Karnataka, India</li>
               <li>+91 XXXXX XXXXX</li>
-              <li>info@7colourbowretreat.in</li>
+              <li>info@7colorbowretreat.in</li>
             </ul>
           </div>
 
@@ -100,7 +100,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-secondary-foreground/20 pt-8 text-center text-secondary-foreground/60">
-          <p>&copy; 2024 7colourbow. All rights reserved.</p>
+          <p>&copy; 2024 7colorbow. All rights reserved.</p>
           <p className="mt-2">
             Built by{" "}
             <a

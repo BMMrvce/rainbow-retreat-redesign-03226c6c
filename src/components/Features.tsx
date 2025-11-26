@@ -30,11 +30,11 @@ const features = [
 
 export const Features = () => {
   return (
-    <section id="why-7colourbow" className="py-20 bg-accent/30">
+    <section id="why-7colorbow" className="py-20 bg-accent/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            Why Choose 7colourbow?
+            Why Choose 7colorbow?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Discover the perfect blend of luxury, nature, and adventure at our resort

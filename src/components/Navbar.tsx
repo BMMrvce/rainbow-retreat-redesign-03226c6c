@@ -32,7 +32,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center space-x-2">
             <div className="text-2xl font-serif font-bold text-primary">
-              7colourbow
+              7colorbow
             </div>
           </div>
 
@@ -45,10 +45,10 @@ export const Navbar = () => {
               Home
             </button>
             <button
-              onClick={() => scrollToSection("why-7colourbow")}
+              onClick={() => scrollToSection("why-7colorbow")}
               className="text-foreground hover:text-primary transition-colors"
             >
-              Why 7colourbow
+              Why 7colorbow
             </button>
             <button
               onClick={() => scrollToSection("accommodations")}
@@ -99,10 +99,10 @@ export const Navbar = () => {
                 Home
               </button>
               <button
-                onClick={() => scrollToSection("why-7colourbow")}
+                onClick={() => scrollToSection("why-7colorbow")}
                 className="text-foreground hover:text-primary transition-colors text-left"
               >
-                Why 7colourbow
+                Why 7colorbow
               </button>
               <button
                 onClick={() => scrollToSection("accommodations")}
