@@ -1,9 +1,6 @@
 import { Card } from "./ui/card";
 import { Waves, Zap, Trophy, Flame, UtensilsCrossed, Music, ChevronLeft, ChevronRight } from "lucide-react";
-import poolImage from "@/assets/pool-activities.jpg";
-import heroImage from "@/assets/hero-resort.jpg";
-import coupleSuite from "@/assets/couple-suite.jpg";
-import villaImage from "@/assets/villa.jpg";
+// Images are now served from Supabase; do not use local asset fallbacks here.
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -41,7 +38,7 @@ const activities = [
 ];
 
 export const Activities = () => {
-  const [slides, setSlides] = useState<string[]>([poolImage, heroImage, coupleSuite, villaImage]);
+  const [slides, setSlides] = useState<string[]>([]);
   const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -73,7 +70,8 @@ export const Activities = () => {
 
         const data = (res.data as { url: string }[]) || [];
         const urls = data.map((r) => r.url).filter(Boolean);
-        if (urls.length > 0) setSlides(urls);
+        // Only use images from Supabase — do not fall back to local assets.
+        setSlides(urls);
       } catch (e) {
         // network or unexpected error
         // eslint-disable-next-line no-console
@@ -107,11 +105,14 @@ export const Activities = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div className="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Slideshow: keeps same dimensions as the original image */}
-            <Slideshow
-              images={[poolImage, heroImage, coupleSuite, villaImage]}
-              alt="Resort Activities"
-            />
+            {/* Slideshow: only render images sourced from Supabase */}
+            {slides.length > 0 ? (
+              <Slideshow images={slides} alt="Resort Activities" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-muted/10">
+                <span className="text-muted-foreground">No activity images available</span>
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent flex items-end">
               <div className="p-8">
                 <h3 className="text-3xl font-serif font-bold text-foreground mb-2">
