@@ -26,10 +26,23 @@ export const Contact = () => {
 
       if (error) throw error;
 
-      toast({
-        title: "Booking Request Received!",
-        description: "We'll get back to you within 24 hours.",
-      });
+        // notify via email (serverless function)
+        try {
+          await fetch('/api/send-contact-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          });
+        } catch (mailErr) {
+          // don't block on mail errors
+          // eslint-disable-next-line no-console
+          console.error('Mail endpoint error', mailErr);
+        }
+
+        toast({
+          title: "Booking Request Received!",
+          description: "We'll get back to you within 24 hours.",
+        });
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       toast({
