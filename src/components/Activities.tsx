@@ -42,6 +42,7 @@ const activities = [
 
 export const Activities = () => {
   const [slides, setSlides] = useState<string[]>([poolImage, heroImage, coupleSuite, villaImage]);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -55,13 +56,29 @@ export const Activities = () => {
 
         if (!mounted) return;
 
-        if (res.data && res.data.length > 0) {
-          const urls = (res.data as { url: string }[]).map((r) => r.url).filter(Boolean);
-          if (urls.length > 0) setSlides(urls);
+        // Log response for debugging
+        // eslint-disable-next-line no-console
+        console.debug("activity_images select result:", res);
+
+        // Supabase returns { data, error }
+        // If there's an error (e.g. RLS or missing key), surface it
+        // so you can inspect in browser console and on-page UI.
+        // @ts-ignore
+        if (res.error) {
+          // eslint-disable-next-line no-console
+          console.error("Supabase error loading activity_images:", res.error);
+          setLoadError(String(res.error.message || res.error));
+          return;
         }
+
+        const data = (res.data as { url: string }[]) || [];
+        const urls = data.map((r) => r.url).filter(Boolean);
+        if (urls.length > 0) setSlides(urls);
       } catch (e) {
-        // ignore: fall back to local assets
-        // console.error(e);
+        // network or unexpected error
+        // eslint-disable-next-line no-console
+        console.error("Unexpected error loading activity_images:", e);
+        setLoadError(String((e as Error).message || e));
       }
     }
 
@@ -74,6 +91,11 @@ export const Activities = () => {
   return (
     <section id="activities" className="py-20 bg-accent/30">
       <div className="container mx-auto px-4">
+        {loadError ? (
+          <div className="mb-4 rounded p-3 bg-red-600/10 border border-red-600 text-red-600 text-sm">
+            Warning: failed to load images from Supabase: {loadError}
+          </div>
+        ) : null}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
             Activities & Amenities
