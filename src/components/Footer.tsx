@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Mail, MessageCircle } from "lucide-react";
+import { Facebook, Instagram, Mail, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -95,12 +95,6 @@ export const Footer = () => {
                 href="#"
                 className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
               >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
-              >
                 <Mail className="w-5 h-5" />
               </a>
               <a
@@ -116,8 +110,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-secondary-foreground/20 pt-8 text-center text-secondary-foreground/60">
-          <p>&copy; 2024 7colorbow. All rights reserved.</p>
-          <p className="mt-2">
+          <p>
             Built by{" "}
             <a
               href="https://tantravruksha.dev"

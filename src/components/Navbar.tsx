@@ -68,7 +68,16 @@ export const Navbar = () => {
             >
               Packages
             </button>
-            <Button onClick={() => scrollToSection("contact")} size="lg">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Contact
+            </button>
+            <Button 
+              onClick={() => window.open("https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry", "_blank")}
+              size="lg"
+            >
               Book Now
             </Button>
           </div>
@@ -116,7 +125,16 @@ export const Navbar = () => {
               >
                 Packages
               </button>
-              <Button onClick={() => scrollToSection("contact")} className="w-full">
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-foreground hover:text-primary transition-colors text-left"
+              >
+                Contact
+              </button>
+              <Button 
+                onClick={() => window.open("https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry", "_blank")}
+                className="w-full"
+              >
                 Book Now
               </Button>
             </div>

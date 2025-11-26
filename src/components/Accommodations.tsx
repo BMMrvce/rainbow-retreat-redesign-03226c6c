@@ -182,7 +182,11 @@ export const Accommodations = () => {
                   </ul>
                 </div>
 
-                <Button className="w-full" size="lg">
+                <Button 
+                  className="w-full" 
+                  size="lg"
+                  onClick={() => window.open("https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry", "_blank")}
+                >
                   Book Now
                 </Button>
               </div>
