@@ -24,7 +24,7 @@ export default async function handler(req: any, res: any) {
   const ADMIN_EMAIL = (process as any)?.env?.ADMIN_EMAIL || 'tantravruksha@gmail.com';
   const FROM_EMAIL = (process as any)?.env?.FROM_EMAIL || 'no-reply@7colorbow.com';
   const BRAND_IMG = (process as any)?.env?.EMAIL_BRANDING_IMAGE ||
-    'https://images.unsplash.com/photo-1506973035872-a4ec16b8e4d4?w=1200&q=80&auto=format&fit=crop';
+    'https://excited-emerald-im8x8qlfvz-0zawstv4m4.edgeone.dev/herosection.jpg';
 
   if (!SENDGRID_API_KEY) {
     res.status(500).json({ error: 'Server missing SENDGRID_API_KEY' });
