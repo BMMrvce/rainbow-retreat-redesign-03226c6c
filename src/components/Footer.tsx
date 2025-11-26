@@ -55,8 +55,24 @@ export const Footer = () => {
             <ul className="space-y-2 text-secondary-foreground/80">
               <li>Nettigere, South Bangalore</li>
               <li>Karnataka, India</li>
-              <li>+91 99008 08691</li>
-              <li>info@7colorbowretreat.in</li>
+              <li>
+                <a 
+                  href="https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary-foreground transition-colors"
+                >
+                  +91 99008 08691
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="mailto:info@7colorbowretreat.in"
+                  className="hover:text-secondary-foreground transition-colors"
+                >
+                  info@7colorbowretreat.in
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -88,7 +104,7 @@ export const Footer = () => {
                 <Mail className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"

@@ -5,6 +5,7 @@ import { Textarea } from "./ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Contact = () => {
   const { toast } = useToast();
@@ -15,13 +16,28 @@ export const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Booking Request Received!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Booking Request Received!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to submit. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -107,8 +123,14 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Phone</h4>
-                  <p className="text-muted-foreground">+91 99008 08691</p>
-                  {/* <p className="text-muted-foreground">+91 XXXXX XXXXX</p> */}
+                  <a 
+                    href="https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    +91 99008 08691
+                  </a>
                 </div>
               </div>
             </Card>
@@ -120,7 +142,12 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Email</h4>
-                  <p className="text-muted-foreground">Colorsbowresort@gmail.com</p>
+                  <a 
+                    href="mailto:Colorsbowresort@gmail.com"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    Colorsbowresort@gmail.com
+                  </a>
                 </div>
               </div>
             </Card>

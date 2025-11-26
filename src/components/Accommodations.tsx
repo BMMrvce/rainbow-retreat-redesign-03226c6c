@@ -19,6 +19,7 @@ const accommodations = [
     description: "Luxurious private villas with modern amenities and beautiful garden views",
     image: villaImage,
     capacity: "4-6 guests",
+    price: "₹8,000/night",
     details: "Our private villas offer the ultimate luxury experience with spacious living areas, fully equipped kitchens, private gardens, and modern amenities. Perfect for families or groups looking for privacy and comfort. Features include air conditioning, Wi-Fi, smart TV, and 24/7 room service.",
     amenities: ["King-size beds", "Private kitchen", "Garden view", "Free Wi-Fi", "Air conditioning", "Smart TV"],
   },
@@ -28,6 +29,7 @@ const accommodations = [
     description: "Romantic suites perfect for couples seeking a peaceful retreat",
     image: coupleSuiteImage,
     capacity: "2 guests",
+    price: "₹5,000/night",
     details: "Designed for romance and intimacy, our couple suites provide a serene escape with premium furnishings, cozy ambiance, and stunning views. Each suite includes a comfortable seating area, modern bathroom, and private balcony perfect for morning coffee or evening relaxation.",
     amenities: ["Queen-size bed", "Private balcony", "Jacuzzi", "Minibar", "Premium toiletries", "Romantic lighting"],
   },
@@ -37,6 +39,7 @@ const accommodations = [
     description: "Comfortable shared accommodations ideal for groups and budget travelers",
     image: villaImage,
     capacity: "8-12 guests",
+    price: "₹800/bed/night",
     details: "Our well-maintained dormitories are perfect for groups, teams, or budget-conscious travelers. Each dormitory features comfortable bunk beds, shared bathrooms, lockers for personal belongings, and common areas for socializing. Great for corporate outings, school trips, or group adventures.",
     amenities: ["Bunk beds", "Shared bathrooms", "Lockers", "Common area", "Fan/AC options", "Hot water"],
   },
@@ -46,6 +49,7 @@ const accommodations = [
     description: "Unique glamping experience under the stars with all essential comforts",
     image: coupleSuiteImage,
     capacity: "2-4 guests",
+    price: "₹3,000/night",
     details: "Experience nature without compromising comfort in our luxury tents. Each tent is equipped with comfortable beds, electricity, and attached bathrooms. Wake up to the sounds of nature and enjoy stargazing at night. Perfect for adventurous couples or small families seeking a unique stay experience.",
     amenities: ["Comfortable beds", "Attached bathroom", "Electricity", "Outdoor seating", "Campfire access", "Star gazing"],
   },
@@ -99,8 +103,13 @@ export const Accommodations = () => {
                     alt={accommodation.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
-                    {accommodation.capacity}
+                  <div className="absolute top-4 right-4 flex flex-col gap-2">
+                    <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
+                      {accommodation.capacity}
+                    </div>
+                    <div className="bg-background/95 backdrop-blur-sm text-foreground px-4 py-2 rounded-full text-sm font-bold">
+                      {accommodation.price}
+                    </div>
                   </div>
                 </div>
                 <div className="p-6">
@@ -132,12 +141,21 @@ export const Accommodations = () => {
           {selectedAccommodation && (
             <>
               <DialogHeader>
-                <DialogTitle className="text-3xl font-serif">
-                  {selectedAccommodation.title}
-                </DialogTitle>
-                <DialogDescription className="text-base">
-                  Capacity: {selectedAccommodation.capacity}
-                </DialogDescription>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <DialogTitle className="text-3xl font-serif">
+                      {selectedAccommodation.title}
+                    </DialogTitle>
+                    <DialogDescription className="text-base">
+                      Capacity: {selectedAccommodation.capacity}
+                    </DialogDescription>
+                  </div>
+                  <div className="bg-primary text-primary-foreground px-4 py-2 rounded-lg">
+                    <span className="text-lg font-bold">
+                      {selectedAccommodation.price}
+                    </span>
+                  </div>
+                </div>
               </DialogHeader>
               
               <div className="space-y-4">

@@ -68,12 +68,6 @@ export const Navbar = () => {
             >
               Packages
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Contact
-            </button>
             <Button onClick={() => scrollToSection("contact")} size="lg">
               Book Now
             </Button>
@@ -121,12 +115,6 @@ export const Navbar = () => {
                 className="text-foreground hover:text-primary transition-colors text-left"
               >
                 Packages
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-foreground hover:text-primary transition-colors text-left"
-              >
-                Contact
               </button>
               <Button onClick={() => scrollToSection("contact")} className="w-full">
                 Book Now
