@@ -1,13 +1,13 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-// Silence TS if `process` type isn't available in this environment
+// Vercel serverless function (use generic any types to avoid build-time type issues)
+// Note: avoid importing '@vercel/node' to prevent type resolution errors during the Vercel build.
+// Provide a minimal `process` declaration so TypeScript in the build does not require @types/node.
 declare const process: any;
 
 // Simple Vercel serverless function to send emails via SendGrid.
 // Requires environment variable: SENDGRID_API_KEY
 // Optional: ADMIN_EMAIL (defaults to tantravruksha@gmail.com)
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -20,9 +20,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'tantravruksha@gmail.com';
-  const FROM_EMAIL = process.env.FROM_EMAIL || 'no-reply@7colorbow.com';
+  // `process.env` is available at runtime in Vercel; use `any` to avoid TS/typedef resolution during build
+  const SENDGRID_API_KEY = (process as any)?.env?.SENDGRID_API_KEY;
+  const ADMIN_EMAIL = (process as any)?.env?.ADMIN_EMAIL || 'tantravruksha@gmail.com';
+  const FROM_EMAIL = (process as any)?.env?.FROM_EMAIL || 'no-reply@7colorbow.com';
 
   if (!SENDGRID_API_KEY) {
     res.status(500).json({ error: 'Server missing SENDGRID_API_KEY' });
