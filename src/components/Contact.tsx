@@ -16,13 +16,26 @@ export const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
+    // Preserve current form data for submission
+    const payload = { ...formData };
+
+    // Reset the UI immediately when the submit button is clicked
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    // Also reset native form fields (in case underlying inputs need it)
+    const form = e.currentTarget as HTMLFormElement;
+    try {
+      form.reset();
+    } catch {
+      // ignore if reset isn't available
+    }
+
     try {
       const { error } = await supabase
-        .from('contact_submissions')
-        .insert([formData]);
+        .from("contact_submissions")
+        .insert([payload]);
 
       if (error) throw error;
 
@@ -30,8 +43,7 @@ export const Contact = () => {
         title: "Booking Request Received!",
         description: "We'll get back to you within 24 hours.",
       });
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (error) {
+    } catch (err) {
       toast({
         title: "Error",
         description: "Failed to submit. Please try again.",
