@@ -23,7 +23,7 @@ export const Hero = () => {
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <div className="mx-4 bg-black/55 backdrop-blur-md rounded-3xl px-8 py-12 md:py-16 space-y-6">
+          <div className="mx-4 bg-black/50 backdrop-blur-md rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6 border border-white/5">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
               Escape to Paradise
             </h1>
@@ -34,7 +34,7 @@ export const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button
                 size="lg"
-                className="text-lg px-8 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg"
+                className="text-lg px-8 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg shadow-indigo-600/30"
                 onClick={scrollToContact}
               >
                 Book Your Stay
