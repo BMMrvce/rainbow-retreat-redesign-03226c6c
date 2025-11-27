@@ -40,43 +40,44 @@ export const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection("why-7colorbow")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Why 7colorbow
             </button>
             <button
               onClick={() => scrollToSection("accommodations")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Accommodations
             </button>
             <button
               onClick={() => scrollToSection("activities")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Activities
             </button>
             <button
               onClick={() => scrollToSection("packages")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Packages
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors font-bold"
             >
               Contact
             </button>
             <Button 
               onClick={() => window.open("https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry", "_blank")}
               size="lg"
+              className="font-bold"
             >
               Book Now
             </Button>
@@ -97,43 +98,43 @@ export const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => scrollToSection("home")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Home
               </button>
               <button
                 onClick={() => scrollToSection("why-7colorbow")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Why 7colorbow
               </button>
               <button
                 onClick={() => scrollToSection("accommodations")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Accommodations
               </button>
               <button
                 onClick={() => scrollToSection("activities")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Activities
               </button>
               <button
                 onClick={() => scrollToSection("packages")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Packages
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="text-foreground hover:text-primary transition-colors text-left"
+                className="text-foreground hover:text-primary transition-colors text-left font-bold"
               >
                 Contact
               </button>
               <Button 
                 onClick={() => window.open("https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry", "_blank")}
-                className="w-full"
+                className="w-full font-bold"
               >
                 Book Now
               </Button>
