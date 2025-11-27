@@ -2,12 +2,12 @@ import { Facebook, Instagram, Mail, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-secondary text-secondary-foreground py-12">
+    <footer className="bg-indigo-600 text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
           <div>
             <h3 className="text-2xl font-serif font-bold mb-4">7colorbow</h3>
-            <p className="text-secondary-foreground/80">
+            <p className="text-white/90">
               Your perfect escape to luxury, nature, and adventure in South Bangalore.
             </p>
           </div>
@@ -18,7 +18,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="#home"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                 >
                   Home
                 </a>
@@ -26,7 +26,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="#accommodations"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                 >
                   Accommodations
                 </a>
@@ -34,7 +34,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="#activities"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                 >
                   Activities
                 </a>
@@ -42,7 +42,7 @@ export const Footer = () => {
               <li>
                 <a
                   href="#packages"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                  className="text-white/90 hover:text-white transition-colors"
                 >
                   Packages
                 </a>
@@ -52,7 +52,7 @@ export const Footer = () => {
 
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-secondary-foreground/80">
+            <ul className="space-y-2 text-white/90">
               <li>Nettigere, South Bangalore</li>
               <li>Karnataka, India</li>
               <li>
@@ -60,7 +60,7 @@ export const Footer = () => {
                   href="https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-secondary-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   +91 99008 08691
                 </a>
@@ -68,7 +68,7 @@ export const Footer = () => {
               <li>
                 <a 
                   href="mailto:info@7colorbowretreat.in"
-                  className="hover:text-secondary-foreground transition-colors"
+                  className="hover:text-white transition-colors"
                 >
                   info@7colorbowretreat.in
                 </a>
@@ -81,42 +81,41 @@ export const Footer = () => {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
               >
-                <Facebook className="w-5 h-5" />
+                <Facebook className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5 text-white" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5 text-white" />
               </a>
               <a
                 href="https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-secondary-foreground/10 rounded-full flex items-center justify-center hover:bg-secondary-foreground/20 transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5 text-white" />
               </a>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-secondary-foreground/20 pt-8 text-center text-secondary-foreground/60">
-          <p>
-            Built by{" "}
+        <div className="border-t border-white/20 pt-6 text-center text-white/80">
+          <p className="flex items-center justify-center gap-3 text-sm">
+            <span className="bg-white/10 px-3 py-1 rounded-full font-semibold">Built by</span>
             <a
               href="https://tantravruksha.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary-foreground hover:text-secondary-foreground/80 transition-colors underline"
+              className="text-white font-medium hover:underline"
             >
               Tantravruksha.dev
             </a>

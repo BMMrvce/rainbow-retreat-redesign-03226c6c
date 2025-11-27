@@ -22,21 +22,31 @@ export const Hero = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight">
-            Escape to Paradise
-          </h1>
-          <p className="text-xl md:text-2xl text-foreground/90 max-w-2xl mx-auto">
-            Experience luxury, adventure, and tranquility at 7colorbow - Your perfect
-            getaway in the heart of nature
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" className="text-lg px-8" onClick={scrollToContact}>
-              Book Your Stay
-            </Button>
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Explore Packages
-            </Button>
+        <div className="max-w-4xl mx-auto animate-fade-in">
+          <div className="mx-4 bg-black/55 backdrop-blur-md rounded-3xl px-8 py-12 md:py-16 space-y-6">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
+              Escape to Paradise
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
+              Experience luxury, adventure, and tranquility at 7colorbow - Your perfect
+              getaway in the heart of nature
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+              <Button
+                size="lg"
+                className="text-lg px-8 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow-lg"
+                onClick={scrollToContact}
+              >
+                Book Your Stay
+              </Button>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="text-lg px-8 bg-gray-700 hover:bg-gray-800 text-white rounded-full"
+              >
+                Explore Packages
+              </Button>
+            </div>
           </div>
         </div>
       </div>
