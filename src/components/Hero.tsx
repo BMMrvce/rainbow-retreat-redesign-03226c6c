@@ -23,7 +23,7 @@ export const Hero = () => {
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <div className="mx-4 bg-black/50 backdrop-blur-md rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6 border border-white/5">
+          <div className="mx-4 bg-[rgba(0,0,0,0.125)] backdrop-blur-md rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6 border border-white/5">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
               Escape to Paradise
             </h1>
