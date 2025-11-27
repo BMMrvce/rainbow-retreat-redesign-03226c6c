@@ -70,7 +70,7 @@ export const Footer = () => {
                   href="mailto:info@7colorbowretreat.in"
                   className="hover:text-white transition-colors"
                 >
-                  info@7colorbowretreat.in
+                  Colorsbowresort@gmail.com
                 </a>
               </li>
             </ul>
