@@ -47,7 +47,7 @@ const accommodations = [
   },
   {
     icon: Tent,
-    title: "Tent Stays",
+    title: "Tents & Camping",
     description: "Unique glamping experience under the stars with all essential comforts",
     image: tentImage,
     capacity: "1-2 guests",
@@ -106,11 +106,11 @@ export const Accommodations = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <div className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
+                    <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
                       {accommodation.capacity}
                     </div>
                     <div className="bg-background/95 backdrop-blur-sm text-foreground px-3 py-1 rounded-full text-sm font-bold whitespace-nowrap">
-                      {accommodation.price}
+                      {accommodation.price.split("/")[0]}
                     </div>
                   </div>
                 </div>
