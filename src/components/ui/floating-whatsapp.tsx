@@ -5,22 +5,18 @@ import React from "react";
 // e.g. `919876543210` or `+919876543210`.
 
 export const FloatingWhatsApp: React.FC<{ message?: string }> = ({ message }) => {
-  const raw = import.meta.env.VITE_WHATSAPP_NUMBER || "";
-  const number = raw.replace(/[^0-9]/g, "");
-
-  const text = message || "Hi, I'm interested in booking. Please help me with details.";
-  const url = number ? `https://wa.me/${number}?text=${encodeURIComponent(text)}` : "#contact";
+  // Use the fixed WhatsApp link as requested
+  const FIXED_WA_LINK = "https://wa.me/919900808691?text=Hi..i%20have%20an%20enquiry";
 
   const handleClick = (e: React.MouseEvent) => {
-    if (!number) return; // allow default (will go to #contact)
     e.preventDefault();
-    window.open(url, "_blank", "noopener,noreferrer");
+    window.open(FIXED_WA_LINK, "_blank", "noopener,noreferrer");
   };
 
   return (
     <div>
       <a
-        href={url}
+        href={FIXED_WA_LINK}
         onClick={handleClick}
         aria-label="Chat on WhatsApp"
         className="fixed z-50 right-5 bottom-5 md:right-8 md:bottom-8 w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-[#25D366] hover:scale-105 transition-transform"
