@@ -27,6 +27,23 @@ export const Packages = () => {
     }
   };
 
+  const openWhatsApp = (pkgName?: string) => {
+    const raw = import.meta.env.VITE_WHATSAPP_NUMBER || "";
+    const number = raw.replace(/[^0-9]/g, "");
+    if (!number) {
+      // fallback to contact section if no number configured
+      scrollToContact();
+      return;
+    }
+
+    const message = pkgName
+      ? `Hi, I'm interested in the ${pkgName} package. Please help me book.`
+      : "Hi, I'm interested in booking. Please help me with details.";
+
+    const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section id="packages" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -72,7 +89,7 @@ export const Packages = () => {
               <Button
                 className="w-full"
                 variant={pkg.popular ? "default" : "outline"}
-                onClick={scrollToContact}
+                onClick={() => openWhatsApp(pkg.name)}
               >
                 Book Now
               </Button>
