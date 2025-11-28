@@ -212,10 +212,10 @@ function Slideshow(props: SlideshowProps) {
 
   useEffect(() => {
     if (!images || images.length === 0) return;
-    // Rotate every 30 seconds per request
+    // Rotate every 5 seconds per request
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % images.length);
-    }, 30000);
+    }, 5000);
     return () => clearInterval(id);
   }, [images.length]);
 
