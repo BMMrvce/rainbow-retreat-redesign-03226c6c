@@ -121,7 +121,7 @@ export const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Location</h4>
                   <p className="text-muted-foreground">
-                    Nettigere, South Bangalore
+                    Kanakpura Main Road,Nettigere, South Bangalore-560116
                     <br />
                     Karnataka, India
                   </p>
