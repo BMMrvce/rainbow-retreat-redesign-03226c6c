@@ -79,7 +79,7 @@ export const Activities = () => {
         setRawUrls(raw);
 
         // Resolve storage paths to public URLs when necessary.
-        const resolved = rawUrls.map((u) => {
+        const resolved = raw.map((u) => {
           if (!u) return u;
           if (u.startsWith('http://') || u.startsWith('https://')) return u;
           // If the DB stores a storage path like "activity_images/xxx.jpg" or just a filename,
