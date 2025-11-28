@@ -4,6 +4,14 @@ import { Waves, Zap, Trophy, Flame, UtensilsCrossed, Music, ChevronLeft, Chevron
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+// Load local activity assets (Vite). These will be URLs (strings) at build time.
+// If you want to use the local images, place them in `src/assets/activities`.
+const _localActivityModules = import.meta.glob(
+  "../assets/activities/*.{png,jpg,jpeg,webp,gif,svg}",
+  { eager: true, as: "url" }
+) as Record<string, string>;
+const LOCAL_ACTIVITY_IMAGES = Object.values(_localActivityModules).sort();
+
 const activities = [
   {
     icon: Waves,
@@ -38,7 +46,8 @@ const activities = [
 ];
 
 export const Activities = () => {
-  const [slides, setSlides] = useState<string[]>([]);
+  // Prefer local images when present; fall back to Supabase if none found.
+  const [slides, setSlides] = useState<string[]>(LOCAL_ACTIVITY_IMAGES.length ? LOCAL_ACTIVITY_IMAGES : []);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [rawUrls, setRawUrls] = useState<string[]>([]);
   // Hide overlay text and slideshow controls (arrows/dots) per request
@@ -46,6 +55,9 @@ export const Activities = () => {
   const showSlideshowControls = false;
 
   useEffect(() => {
+    // If local images exist, skip Supabase fetch — local is preferred.
+    if (LOCAL_ACTIVITY_IMAGES.length > 0) return;
+
     let mounted = true;
     const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
     const STORAGE_BUCKET = import.meta.env.VITE_SUPABASE_STORAGE_BUCKET;
@@ -199,9 +211,11 @@ function Slideshow(props: SlideshowProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (!images || images.length === 0) return;
+    // Rotate every 30 seconds per request
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % images.length);
-    }, 4000);
+    }, 30000);
     return () => clearInterval(id);
   }, [images.length]);
 
