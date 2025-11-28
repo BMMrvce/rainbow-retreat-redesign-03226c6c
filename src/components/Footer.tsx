@@ -53,7 +53,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-white/90">
-              <li>Nettigere, South Bangalore</li>
+              <li>Kanakpura Main Road,Nettigere, South Bangalore-560116</li>
               <li>Karnataka, India</li>
               <li>
                 <a 
