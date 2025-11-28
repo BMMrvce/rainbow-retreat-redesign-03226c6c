@@ -23,7 +23,7 @@ const accommodations = [
     capacity: "6-8 guests",
     price: "₹3,499/person/night",
     details: "Our private villas offer the ultimate luxury experience with spacious living areas, fully equipped kitchens, private gardens, and modern amenities. Perfect for families or groups looking for privacy and comfort. Features include air conditioning, Wi-Fi, smart TV, and 24/7 room service.",
-    amenities: ["King-size beds", "Private kitchen", "Garden view", "Free Wi-Fi", "Air conditioning", "Smart TV"],
+    amenities: ["King-size beds", "Private kitchen", "Garden view", "Air conditioning"],
   },
   {
     icon: Heart,
@@ -33,7 +33,7 @@ const accommodations = [
     capacity: "2 guests",
     price: "₹2799/person/night",
     details: "Designed for romance and intimacy, our couple suites provide a serene escape with premium furnishings, cozy ambiance, and stunning views. Each suite includes a comfortable seating area, modern bathroom, and private balcony perfect for morning coffee or evening relaxation.",
-    amenities: ["Queen-size bed", "Private balcony", "Jacuzzi", "Minibar", "Premium toiletries", "Romantic lighting"],
+    amenities: ["King-size bed", "Private balcony","Air Cooler", "Premium toiletries", "Romantic lighting"],
   },
   {
     icon: Users,
@@ -43,7 +43,7 @@ const accommodations = [
     capacity: "8-12 guests",
     price: "₹2499/person/night",
     details: "Our well-maintained dormitories are perfect for groups, teams, or budget-conscious travelers. Each dormitory features comfortable bunk beds, shared bathrooms, lockers for personal belongings, and common areas for socializing. Great for corporate outings, school trips, or group adventures.",
-    amenities: ["Bunk beds", "Shared bathrooms", "Lockers", "Common area", "Fan/AC options", "Hot water"],
+    amenities: ["Queen size beds", "Shared bathrooms", "Lockers", "Common area", "Fan/AC options", "Hot water"],
   },
   {
     icon: Tent,
@@ -53,7 +53,7 @@ const accommodations = [
     capacity: "1-2 guests",
     price: "₹1799/person/night",
     details: "Experience nature without compromising comfort in our luxury tents. Each tent is equipped with comfortable beds, electricity, and attached bathrooms. Wake up to the sounds of nature and enjoy stargazing at night. Perfect for adventurous couples or small families seeking a unique stay experience.",
-    amenities: ["Comfortable beds", "Attached bathroom", "Electricity", "Outdoor seating", "Campfire access", "Star gazing"],
+    amenities: ["Comfortable beds", "Common bathroom", "Electricity", "Outdoor seating", "Campfire access","Lighting" ],
   },
 ];
 

@@ -3,48 +3,48 @@ import { Button } from "./ui/button";
 import { Check } from "lucide-react";
 
 const packages = [
+  // {
+  //   name: "Day Out Package",
+  //   price: "Contact for pricing",
+  //   description: "Perfect for families, friends, or corporate groups",
+  //   features: [
+  //     "Welcome drinks on arrival",
+  //     "Unlimited buffet meals (veg & non-veg)",
+  //     "Access to all resort amenities",
+  //     "Swimming pool & rain dance",
+  //     "Indoor & outdoor games",
+  //     "Campfire setup (evening)",
+  //   ],
+  //   popular: false,
+  // },
   {
-    name: "Day Out Package",
-    price: "Contact for pricing",
-    description: "Perfect for families, friends, or corporate groups",
-    features: [
-      "Welcome drinks on arrival",
-      "Unlimited buffet meals (veg & non-veg)",
-      "Access to all resort amenities",
-      "Swimming pool & rain dance",
-      "Indoor & outdoor games",
-      "Campfire setup (evening)",
-    ],
-    popular: false,
-  },
-  {
-    name: "Overnight Stay",
-    price: "Contact for pricing",
-    description: "Extended relaxation with comfortable accommodations",
+    name: "DayOut Package",
+    price: "999 INR/person",
+    description: "Extended relaxation with comfortable day-use amenities",
     features: [
       "All Day Out package features",
-      "Comfortable overnight accommodation",
-      "Breakfast, lunch & dinner",
-      "Late night bonfire with music",
+      "Day-use cabanas or resting areas",
+      "Food & beverages throughout the day",
+      "Extended access to pool & activities",
       "24/7 security & assistance",
       "Complimentary parking",
     ],
     popular: true,
-  },
-  {
-    name: "Events & Celebrations",
-    price: "Custom pricing",
-    description: "Weddings, corporate events, and special occasions",
-    features: [
-      "Customizable event planning",
-      "Dedicated event coordinator",
-      "Catering for large groups",
-      "DJ & entertainment setup",
-      "Decoration assistance",
-      "Photography-friendly venues",
-    ],
-    popular: false,
-  },
+  // },
+  // {
+  //   name: "Events & Celebrations",
+  //   price: "Custom pricing",
+  //   description: "Weddings, corporate events, and special occasions",
+  //   features: [
+  //     "Customizable event planning",
+  //     "Dedicated event coordinator",
+  //     "Catering for large groups",
+  //     "DJ & entertainment setup",
+  //     "Decoration assistance",
+  //     "Photography-friendly venues",
+  //   ],
+  //   popular: false,
+  // },
 ];
 
 export const Packages = () => {

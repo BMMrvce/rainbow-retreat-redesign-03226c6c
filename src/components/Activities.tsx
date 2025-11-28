@@ -13,7 +13,7 @@ const activities = [
   {
     icon: Zap,
     title: "Adventure Sports",
-    description: "Zipline, rope activities, and thrilling outdoor challenges",
+    description: "Trekking","Zipline, rope activities, and thrilling outdoor challenges",
   },
   {
     icon: Trophy,
@@ -32,7 +32,7 @@ const activities = [
   },
   {
     icon: Music,
-    title: "DJ & Entertainment",
+    title: "Music &  Entertainment",
     description: "Live music and entertainment for special events",
   },
 ];
