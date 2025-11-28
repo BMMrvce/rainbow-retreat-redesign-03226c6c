@@ -173,8 +173,7 @@ export const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-card-foreground mb-1">Hours</h4>
                   <p className="text-muted-foreground">Open 24/7</p>
-                  <p className="text-muted-foreground text-sm">Check-in: 12:00 PM</p>
-                  <p className="text-muted-foreground text-sm">Check-out: 11:00 AM</p>
+                  
                 </div>
               </div>
             </Card>
