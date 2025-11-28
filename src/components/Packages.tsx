@@ -3,20 +3,6 @@ import { Button } from "./ui/button";
 import { Check } from "lucide-react";
 
 const packages = [
-  // {
-  //   name: "Day Out Package",
-  //   price: "Contact for pricing",
-  //   description: "Perfect for families, friends, or corporate groups",
-  //   features: [
-  //     "Welcome drinks on arrival",
-  //     "Unlimited buffet meals (veg & non-veg)",
-  //     "Access to all resort amenities",
-  //     "Swimming pool & rain dance",
-  //     "Indoor & outdoor games",
-  //     "Campfire setup (evening)",
-  //   ],
-  //   popular: false,
-  // },
   {
     name: "DayOut Package",
     price: "999 INR/person",
@@ -30,21 +16,7 @@ const packages = [
       "Complimentary parking",
     ],
     popular: true,
-  // },
-  // {
-  //   name: "Events & Celebrations",
-  //   price: "Custom pricing",
-  //   description: "Weddings, corporate events, and special occasions",
-  //   features: [
-  //     "Customizable event planning",
-  //     "Dedicated event coordinator",
-  //     "Catering for large groups",
-  //     "DJ & entertainment setup",
-  //     "Decoration assistance",
-  //     "Photography-friendly venues",
-  //   ],
-  //   popular: false,
-  // },
+   }
 ];
 
 export const Packages = () => {
