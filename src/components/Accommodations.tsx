@@ -11,8 +11,8 @@ import {
 } from "./ui/dialog";
 import villaImage from "@/assets/villa.jpg";
 import coupleRoomImage from "@/assets/couple-room.jpg";
-import poolActivitiesImage from "@/assets/pool-activities.jpg";
-import heroResortImage from "@/assets/hero-resort.jpg";
+import dormitoryImage from "@/assets/dormitory.jpg";
+import tentImage from "@/assets/tent.jpeg";
 
 const accommodations = [
   {
@@ -39,7 +39,7 @@ const accommodations = [
     icon: Users,
     title: "Dormitories",
     description: "Comfortable shared accommodations ideal for groups and budget travelers",
-    image: poolActivitiesImage,
+    image: dormitoryImage,
     capacity: "8-12 guests",
     price: "₹800/bed/night",
     details: "Our well-maintained dormitories are perfect for groups, teams, or budget-conscious travelers. Each dormitory features comfortable bunk beds, shared bathrooms, lockers for personal belongings, and common areas for socializing. Great for corporate outings, school trips, or group adventures.",
@@ -49,7 +49,7 @@ const accommodations = [
     icon: Tent,
     title: "Tent Stays",
     description: "Unique glamping experience under the stars with all essential comforts",
-    image: heroResortImage,
+    image: tentImage,
     capacity: "2-4 guests",
     price: "₹3,000/night",
     details: "Experience nature without compromising comfort in our luxury tents. Each tent is equipped with comfortable beds, electricity, and attached bathrooms. Wake up to the sounds of nature and enjoy stargazing at night. Perfect for adventurous couples or small families seeking a unique stay experience.",
