@@ -13,7 +13,7 @@ const activities = [
   {
     icon: Zap,
     title: "Adventure Sports",
-    description: "Trekking","Zipline, rope activities, and thrilling outdoor challenges",
+    description: "Trekking, Zipline, rope activities, and thrilling outdoor challenges",
   },
   {
     icon: Trophy,
@@ -152,7 +152,14 @@ export const Activities = () => {
   );
 };
 
-function Slideshow({ images, alt, showControls = true }: { images: string[]; alt?: string; showControls?: boolean }) {
+interface SlideshowProps {
+  images: string[];
+  alt?: string;
+  showControls?: boolean;
+}
+
+function Slideshow(props: SlideshowProps) {
+  const { images, alt, showControls = true } = props;
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
