@@ -40,12 +40,15 @@ const activities = [
 export const Activities = () => {
   const [slides, setSlides] = useState<string[]>([]);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [rawUrls, setRawUrls] = useState<string[]>([]);
   // Hide overlay text and slideshow controls (arrows/dots) per request
   const showOverlayText = false;
   const showSlideshowControls = false;
 
   useEffect(() => {
     let mounted = true;
+    const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+    const STORAGE_BUCKET = import.meta.env.VITE_SUPABASE_STORAGE_BUCKET;
 
     async function loadImages() {
       try {
@@ -72,9 +75,24 @@ export const Activities = () => {
         }
 
         const data = (res.data as { url: string }[]) || [];
-        const urls = data.map((r) => r.url).filter(Boolean);
+        const raw = data.map((r) => r.url).filter(Boolean);
+        setRawUrls(raw);
+
+        // Resolve storage paths to public URLs when necessary.
+        const resolved = rawUrls.map((u) => {
+          if (!u) return u;
+          if (u.startsWith('http://') || u.startsWith('https://')) return u;
+          // If the DB stores a storage path like "activity_images/xxx.jpg" or just a filename,
+          // construct a public URL using the Supabase storage public endpoint and configured bucket.
+          if (SUPABASE_URL && STORAGE_BUCKET) {
+            return `${SUPABASE_URL.replace(/\/$/, '')}/storage/v1/object/public/${STORAGE_BUCKET}/${u.replace(/^\//, '')}`;
+          }
+          // Fallback: return original value (may be a relative path or already a full URL)
+          return u;
+        });
+
         // Only use images from Supabase — do not fall back to local assets.
-        setSlides(urls);
+        setSlides(resolved);
       } catch (e) {
         // network or unexpected error
         // eslint-disable-next-line no-console
@@ -129,6 +147,24 @@ export const Activities = () => {
               ) : null}
             </div>
           </div>
+
+          {/* Debug: show raw DB urls and resolved public urls when images fail */}
+          {(!slides.length && rawUrls.length > 0) && (
+            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 text-sm text-yellow-800 rounded">
+              <div className="font-semibold mb-2">Image debug</div>
+              <div className="space-y-2">
+                {rawUrls.map((r, i) => (
+                  <div key={i}>
+                    <div className="text-xs text-muted-foreground">raw: <code>{r}</code></div>
+                    <div className="text-xs text-muted-foreground">resolved: <code>{slides[i] || '—'}</code></div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-2 text-xs text-muted-foreground">
+                If resolved URLs are not valid, set `VITE_SUPABASE_STORAGE_BUCKET` to your storage bucket name so the site can construct public URLs for storage paths.
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {activities.map((activity, index) => (
