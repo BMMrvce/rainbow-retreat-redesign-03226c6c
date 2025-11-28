@@ -54,7 +54,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-accent/30">
+    <section id="contact" className="pt-24 pb-20 bg-accent/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
