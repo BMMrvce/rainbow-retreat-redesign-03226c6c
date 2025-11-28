@@ -1,4 +1,5 @@
 import React from "react";
+import { Phone } from "lucide-react";
 
 // Floating WhatsApp button. Reads `VITE_WHATSAPP_NUMBER` from env.
 // Set `VITE_WHATSAPP_NUMBER` to a full international number (with or without leading +),
@@ -15,6 +16,15 @@ export const FloatingWhatsApp: React.FC<{ message?: string }> = ({ message }) =>
 
   return (
     <div>
+      {/* Call button above WhatsApp */}
+      <a
+        href="tel:+919900808691"
+        aria-label="Call +91 99008 08691"
+        className="fixed z-50 right-5 bottom-20 md:right-8 md:bottom-24 w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-blue-600 hover:scale-105 transition-transform text-white"
+      >
+        <Phone className="w-6 h-6" />
+      </a>
+
       <a
         href={FIXED_WA_LINK}
         onClick={handleClick}
