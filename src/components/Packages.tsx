@@ -43,7 +43,7 @@ export const Packages = () => {
           {packages.map((pkg, index) => (
             <Card
               key={index}
-              className={`p-8 hover:shadow-2xl transition-all duration-300 relative ${
+              className={`p-8 hover:shadow-2xl transition-all duration-300 relative flex flex-col items-center ${
                 pkg.popular ? "ring-2 ring-primary scale-105" : ""
               }`}
             >
@@ -60,11 +60,11 @@ export const Packages = () => {
                 <div className="text-3xl font-bold text-primary">{pkg.price}</div>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="w-full max-w-[34rem] sm:max-w-[28rem] mx-auto flex flex-col items-center space-y-3 mb-8">
                 {pkg.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start gap-2">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-card-foreground text-sm">{feature}</span>
+                  <li key={featureIndex} className="flex items-center gap-2">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="text-card-foreground text-sm text-center">{feature}</span>
                   </li>
                 ))}
               </ul>
