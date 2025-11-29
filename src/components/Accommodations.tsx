@@ -109,8 +109,8 @@ export const Accommodations = () => {
                     <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
                       {accommodation.capacity}
                     </div>
-                    <div className="bg-background/95 backdrop-blur-sm text-foreground px-2 py-1 rounded-full text-lg font-bold whitespace-nowrap">
-                      {accommodation.price.split("/")[0]}
+                    <div className="bg-background/95 backdrop-blur-sm text-foreground px-2 py-1 rounded-full text-sm font-semibold whitespace-nowrap">
+                      {String(accommodation.price).trim()}
                     </div>
                   </div>
                 </div>
