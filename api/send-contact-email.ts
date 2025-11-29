@@ -32,6 +32,45 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
+    // Attempt server-side insert to Supabase using service role key (if configured).
+    // This ensures submissions are saved even if client-side inserts are blocked by RLS.
+    let inserted = false;
+    let dbError: string | null = null;
+    try {
+      const SUPABASE_URL = (process as any)?.env?.VITE_SUPABASE_URL || (process as any)?.env?.SUPABASE_URL;
+      const SERVICE_ROLE_KEY = (process as any)?.env?.SUPABASE_SERVICE_ROLE_KEY || (process as any)?.env?.SUPABASE_SERVICE_KEY || (process as any)?.env?.VITE_SUPABASE_SERVICE_ROLE_KEY;
+
+      if (SUPABASE_URL && SERVICE_ROLE_KEY) {
+        const restUrl = `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/contact_submissions`;
+        const resp = await fetch(restUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SERVICE_ROLE_KEY,
+            'Authorization': `Bearer ${SERVICE_ROLE_KEY}`,
+            Prefer: 'return=minimal'
+          },
+          body: JSON.stringify([{ name, email, phone, message }])
+        });
+
+        if (resp.ok || resp.status === 201 || resp.status === 204) {
+          inserted = true;
+        } else {
+          const text = await resp.text();
+          dbError = `status=${resp.status} body=${text}`;
+          // eslint-disable-next-line no-console
+          console.error('Supabase REST insert failed', dbError);
+        }
+      } else {
+        // eslint-disable-next-line no-console
+        console.debug('Supabase service role key or URL not configured; skipping server-side insert');
+      }
+    } catch (dbErr: any) {
+      // Non-fatal: log and continue sending emails
+      // eslint-disable-next-line no-console
+      console.error('Server-side Supabase insert error', dbErr?.message || dbErr);
+    }
+
     const sendViaSendGrid = async (body: any) => {
       const resp = await fetch('https://api.sendgrid.com/v3/mail/send', {
         method: 'POST',
@@ -113,7 +152,8 @@ export default async function handler(req: any, res: any) {
       ]
     });
 
-    res.status(200).json({ ok: true });
+    // Return whether the DB insert succeeded for debugging/feedback
+    res.status(200).json({ ok: true, inserted, dbError });
   } catch (err: any) {
     // eslint-disable-next-line no-console
     console.error('Error sending mail', err?.message || err);
