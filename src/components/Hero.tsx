@@ -15,15 +15,13 @@ export const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat hero-image"
-        style={{ backgroundImage: `url(${heroImage})` }}>
-
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/30 to-background/70" />
-      </div>
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      />
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <div className="mx-4 bg-[rgba(0,0,0,0.08)] backdrop-blur-sm rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6 border border-white/5">
+          <div className="mx-4 rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight">
               Escape to Paradise
             </h1>
