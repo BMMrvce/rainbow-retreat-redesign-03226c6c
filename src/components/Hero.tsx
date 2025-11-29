@@ -19,6 +19,9 @@ export const Hero = () => {
         style={{ backgroundImage: `url(${heroImage})` }}
       />
 
+      {/* subtle gradient overlay to improve text legibility without heavy color grading */}
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/6 via-black/3 to-transparent" />
+
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto animate-fade-in">
           <div className="mx-4 bg-[rgba(0,0,0,0.02)] backdrop-blur-sm rounded-3xl px-6 md:px-8 py-10 md:py-16 space-y-6 border border-white/5">
