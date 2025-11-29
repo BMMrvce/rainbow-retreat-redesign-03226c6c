@@ -189,3 +189,4 @@ export const Contact = () => {
     </section>
   );
 };
+
