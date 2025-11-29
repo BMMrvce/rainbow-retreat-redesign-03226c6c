@@ -91,12 +91,7 @@ export default async function handler(req: any, res: any) {
         <div style="background:#fff;padding:20px;border:1px solid #eee;border-top:none;border-radius:0 0 8px 8px">
           <h2 style="margin-top:0">Thanks, ${name} — we received your request</h2>
           <p style="color:#444">We received your booking request and will respond within 24 hours. Summary of your submission is below.</p>
-          <table style="width:100%;border-collapse:collapse;margin-top:12px">
-            <tr><td style="padding:8px;border:1px solid #eee"><strong>Name</strong></td><td style="padding:8px;border:1px solid #eee">${name}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee"><strong>Phone</strong></td><td style="padding:8px;border:1px solid #eee">${phone || '(none)'}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee"><strong>Email</strong></td><td style="padding:8px;border:1px solid #eee">${email}</td></tr>
-            <tr><td style="padding:8px;border:1px solid #eee"><strong>Message</strong></td><td style="padding:8px;border:1px solid #eee">${(message||'(none)').replace(/\n/g, '<br/>')}</td></tr>
-          </table>
+         
           <p style="margin-top:16px;color:#666;font-size:13px">If you need immediate assistance, reply to this email or call us.</p>
           <p style="color:#999;font-size:12px">7colorbow</p>
         </div>
