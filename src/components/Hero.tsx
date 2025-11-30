@@ -9,6 +9,13 @@ export const Hero = () => {
     }
   };
 
+  const scrollToPackages = () => {
+    const element = document.getElementById("packages");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       id="home"
@@ -44,6 +51,7 @@ export const Hero = () => {
                 size="lg"
                 variant="secondary"
                 className="text-lg px-8 bg-gray-700 hover:bg-gray-800 text-white rounded-full"
+                onClick={scrollToPackages}
               >
                 Explore Packages
               </Button>
