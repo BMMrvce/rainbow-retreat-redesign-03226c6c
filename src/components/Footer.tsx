@@ -121,7 +121,7 @@ export const Footer = () => {
               rel="noopener noreferrer"
               className="bg-white/10 px-3 py-1 rounded-full font-semibold text-white hover:underline"
             >
-              Tantravruksha.dev
+              <i>Tantravruksha.dev</i>
             </a>
           </p>
         </div>
