@@ -2,7 +2,6 @@ import { Card } from "./ui/card";
 import { Waves, Zap, Trophy, Flame, UtensilsCrossed, Music, ChevronLeft, ChevronRight } from "lucide-react";
 // Images are now served from Supabase; do not use local asset fallbacks here.
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 // Load local activity assets (Vite). These will be URLs (strings) at build time.
 // If you want to use the local images, place them in `src/assets/activities`.
@@ -55,68 +54,10 @@ export const Activities = () => {
   const showSlideshowControls = false;
 
   useEffect(() => {
-    // If local images exist, skip Supabase fetch — local is preferred.
-    if (LOCAL_ACTIVITY_IMAGES.length > 0) return;
-
-    let mounted = true;
-    const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-    const STORAGE_BUCKET = import.meta.env.VITE_SUPABASE_STORAGE_BUCKET;
-
-    async function loadImages() {
-      try {
-        const res = await supabase
-          .from("activity_images")
-          .select("url")
-          .order("created_at", { ascending: false });
-
-        if (!mounted) return;
-
-        // Log response for debugging
-        // eslint-disable-next-line no-console
-        console.debug("activity_images select result:", res);
-
-        // Supabase returns { data, error }
-        // If there's an error (e.g. RLS or missing key), surface it
-        // so you can inspect in browser console and on-page UI.
-        // @ts-ignore
-        if (res.error) {
-          // eslint-disable-next-line no-console
-          console.error("Supabase error loading activity_images:", res.error);
-          setLoadError(String(res.error.message || res.error));
-          return;
-        }
-
-        const data = (res.data as { url: string }[]) || [];
-        const raw = data.map((r) => r.url).filter(Boolean);
-        setRawUrls(raw);
-
-        // Resolve storage paths to public URLs when necessary.
-        const resolved = raw.map((u) => {
-          if (!u) return u;
-          if (u.startsWith('http://') || u.startsWith('https://')) return u;
-          // If the DB stores a storage path like "activity_images/xxx.jpg" or just a filename,
-          // construct a public URL using the Supabase storage public endpoint and configured bucket.
-          if (SUPABASE_URL && STORAGE_BUCKET) {
-            return `${SUPABASE_URL.replace(/\/$/, '')}/storage/v1/object/public/${STORAGE_BUCKET}/${u.replace(/^\//, '')}`;
-          }
-          // Fallback: return original value (may be a relative path or already a full URL)
-          return u;
-        });
-
-        // Only use images from Supabase — do not fall back to local assets.
-        setSlides(resolved);
-      } catch (e) {
-        // network or unexpected error
-        // eslint-disable-next-line no-console
-        console.error("Unexpected error loading activity_images:", e);
-        setLoadError(String((e as Error).message || e));
-      }
-    }
-
-    loadImages();
-    return () => {
-      mounted = false;
-    };
+    // Remote image fetching disabled — using local assets only for now.
+    // If `LOCAL_ACTIVITY_IMAGES` contains images they were already initialized in state.
+    // Otherwise keep slides empty and show the "No activity images available" placeholder.
+    return;
   }, []);
 
   return (

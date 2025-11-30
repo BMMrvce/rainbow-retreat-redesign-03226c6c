@@ -3,10 +3,11 @@
 // Provide a minimal `process` declaration so TypeScript in the build does not require @types/node.
 declare const process: any;
 
+import { createClient } from '@supabase/supabase-js';
+
 // Simple Vercel serverless function to send emails via SendGrid.
 // Requires environment variable: SENDGRID_API_KEY
 // Optional: ADMIN_EMAIL (defaults to tantravruksha@gmail.com)
-
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
@@ -37,29 +38,24 @@ export default async function handler(req: any, res: any) {
     let inserted = false;
     let dbError: string | null = null;
     try {
-      const SUPABASE_URL = (process as any)?.env?.VITE_SUPABASE_URL || (process as any)?.env?.SUPABASE_URL;
+      const SUPABASE_URL = (process as any)?.env?.SUPABASE_URL || (process as any)?.env?.VITE_SUPABASE_URL;
       const SERVICE_ROLE_KEY = (process as any)?.env?.SUPABASE_SERVICE_ROLE_KEY || (process as any)?.env?.SUPABASE_SERVICE_KEY || (process as any)?.env?.VITE_SUPABASE_SERVICE_ROLE_KEY;
 
       if (SUPABASE_URL && SERVICE_ROLE_KEY) {
-        const restUrl = `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/contact_submissions`;
-        const resp = await fetch(restUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SERVICE_ROLE_KEY,
-            'Authorization': `Bearer ${SERVICE_ROLE_KEY}`,
-            Prefer: 'return=minimal'
-          },
-          body: JSON.stringify([{ name, email, phone, message }])
-        });
-
-        if (resp.ok || resp.status === 201 || resp.status === 204) {
-          inserted = true;
-        } else {
-          const text = await resp.text();
-          dbError = `status=${resp.status} body=${text}`;
+        try {
+          const sb = createClient(SUPABASE_URL, SERVICE_ROLE_KEY, { auth: { persistSession: false } });
+          const { error } = await sb.from('contact_submissions').insert([{ name, email, phone, message }]);
+          if (error) {
+            dbError = String(error.message || JSON.stringify(error));
+            // eslint-disable-next-line no-console
+            console.error('Supabase server client insert error', dbError);
+          } else {
+            inserted = true;
+          }
+        } catch (innerErr: any) {
+          dbError = String(innerErr?.message || innerErr);
           // eslint-disable-next-line no-console
-          console.error('Supabase REST insert failed', dbError);
+          console.error('Supabase insert failed', dbError);
         }
       } else {
         // eslint-disable-next-line no-console
