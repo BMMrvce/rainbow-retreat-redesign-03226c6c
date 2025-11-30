@@ -5,13 +5,57 @@ import type { Database } from './types';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-// Import the supabase client like this:
-// import { supabase } from "@/integrations/supabase/client";
+// Safely export a `supabase` object. If Vite envs are missing (e.g. not configured
+// during a quick deploy), the real `createClient` call can throw or cause runtime
+// failures (accessing `localStorage` on the server). To avoid a blank screen, we
+// provide a small no-op stub that matches the subset of the Supabase client API
+// used by this app. This keeps imports stable and avoids crashes when envs are
+// intentionally absent.
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
-  auth: {
-    storage: localStorage,
-    persistSession: true,
-    autoRefreshToken: true,
-  }
-});
+function makeNoopResponse() {
+  return Promise.resolve({ data: null, error: null });
+}
+
+function makeNoopFrom(_table: string) {
+  return {
+    select: (_cols?: string) => makeNoopResponse(),
+    insert: (_payload: any) => makeNoopResponse(),
+    update: (_payload: any) => ({ eq: (_col: string, _val: any) => makeNoopResponse() }),
+    order: (_col: string, _opts?: any) => makeNoopResponse(),
+    eq: (_col: string, _val: any) => makeNoopResponse(),
+  };
+}
+
+const isBrowser = typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+
+let supabase: any;
+
+if (SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY && isBrowser) {
+  // Only initialize real client when required envs are present and we're in the browser
+  supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      storage: localStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+  });
+} else {
+  // No-op stub: provides `.from(...)` and a basic `storage` namespace used elsewhere.
+  supabase = {
+    from: makeNoopFrom,
+    storage: {
+      from: (_bucket: string) => ({
+        // getPublicUrl is used in some flows; return null safe shape
+        getPublicUrl: (_path: string) => ({ data: { publicUrl: null }, error: null }),
+        // download fallback
+        download: async (_path: string) => ({ data: null, error: null }),
+      }),
+    },
+    auth: {
+      // minimal auth shape for code that may access this namespace
+      user: null,
+    },
+  } as const;
+}
+
+export { supabase };
