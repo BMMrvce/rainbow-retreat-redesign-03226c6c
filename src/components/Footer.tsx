@@ -116,12 +116,12 @@ export const Footer = () => {
           <p className="flex items-center justify-center gap-3 text-sm">
             <span className="text-white font-medium">Built by</span>
             <a
-              href="https://tantravruksha.dev"
+              href="https://tantravruksha.in"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 px-3 py-1 rounded-full font-semibold text-white hover:bg-white/20 transition-colors"
             >
-              <i>Tantravruksha.dev</i>
+              <i>Tantravruksha.in</i>
             </a>
           </p>
         </div>
